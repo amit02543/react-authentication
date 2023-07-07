@@ -48,8 +48,12 @@ export async function action({ request }) {
 
   const resData = await response.json();
   const token = resData.token;
-  
+
+  const expirtation = new Date();
+  expirtation.setHours(expirtation.getHours() + 1);
+
   localStorage.setItem('token', token);
+  localStorage.setItem('expiration', expirtation.toISOString());
   
 
   return redirect('/');
